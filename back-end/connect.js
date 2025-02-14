@@ -43,17 +43,10 @@ async function getAllTasks(section_code) {
 }
 
 // Function to update a task's completion status
-<<<<<<< HEAD
-async function updateTaskCompletionStatus(id, completed) {
-  try {
-    const query = "UPDATE tasks SET completed = $1 WHERE id = $2 RETURNING *";
-    const values = [completed, id];
-=======
 async function updateTaskCompletionStatus(id) {
   try {
     const query = "UPDATE tasks SET completed = $1 WHERE id = $2 RETURNING *";
     const values = [true, id];
->>>>>>> 3ed9061 (Initial commit)
     const result = await client.query(query, values);
     return result.rows[0]; // Return the updated task
   } catch (error) {
@@ -91,11 +84,7 @@ async function checkUserCredentials(username, password) {
 async function addUser(username, password, sectionCode) {
   try {
     const query =
-<<<<<<< HEAD
-      "INSERT INTO users (username, password, section_code) VALUES ($1, $2, $3) RETURNING *";
-=======
       "INSERT INTO users (username, password, section_id) VALUES ($1, $2, $3) RETURNING *";
->>>>>>> 3ed9061 (Initial commit)
     const values = [username, password, sectionCode];
     const result = await client.query(query, values);
     return result.rows[0]; // Return the inserted user

@@ -6,29 +6,19 @@ const {
   checkUserCredentials,
   addUser,
   getAllTasks,
-<<<<<<< HEAD
-=======
   updateTaskCompletionStatus,
   deleteTask,
->>>>>>> 3ed9061 (Initial commit)
 } = require("./connect");
 const jwt = require("jsonwebtoken");
 
 app.use(express.json());
 app.use(
   cors({
-<<<<<<< HEAD
-    origin: "http://localhost:3000", // Allow requests from the Next.js application
-    credentials: true,
-  })
-);
-=======
     origin: "http://localhost:3001", // Allow requests from the Next.js application
     credentials: true,
   })
 );
 app.use(express.urlencoded({ extended: true }));
->>>>>>> 3ed9061 (Initial commit)
 
 app.get("/", async (req, res) => {
   const authHeader = req.headers["authorization"];
@@ -101,17 +91,11 @@ app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   try {
     const User = await checkUserCredentials(username, password);
-<<<<<<< HEAD
-    const u = await User.rows[0].username;
-    const p = await User.rows[0].password;
-    const s = await User.rows[0].section_code;
-=======
 
     const u = await User.rows[0].username;
     const p = await User.rows[0].password;
     const s = await User.rows[0].section_id;
     console.log(User.rows[0]);
->>>>>>> 3ed9061 (Initial commit)
     const token = jwt.sign(
       { username: u, password: p, section_id: s },
       "SECRET_KEY",
@@ -135,8 +119,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-=======
 app.post("/update", async (req, res) => {
   const { id } = req.body; // No need for 'await' here
   try {
@@ -163,7 +145,6 @@ app.post("/delete", async (req, res) => {
   }
 });
 
->>>>>>> 3ed9061 (Initial commit)
 app.listen(4000, () => {
   console.log("Server is running on port 4000");
 });
